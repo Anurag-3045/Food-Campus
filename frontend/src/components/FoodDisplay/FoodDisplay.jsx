@@ -4,15 +4,16 @@ import { StoreContext } from '../../context/StoreContext';
 import FoodItem from '../FoodItem/FoodItem';
 import { food_list as staticFoodList } from '../../assets/assets';
 
+const normalizeCategory = (value) => {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "maim course") return "main course";
+  return normalized;
+};
+
 const FoodDisplay = ({category}) => {
 
     const {food_list} = useContext(StoreContext);
 
-    const normalizeCategory = (value) => {
-      const normalized = String(value || "").trim().toLowerCase();
-      if (normalized === "maim course") return "main course";
-      return normalized;
-    };
     const selectedCategory = normalizeCategory(category);
     const staticCategoryByName = new Map(
       staticFoodList.map((item) => [String(item.name || "").trim().toLowerCase(), item.category])
@@ -25,10 +26,10 @@ const FoodDisplay = ({category}) => {
               const itemName = String(item.name || "").trim().toLowerCase();
               const effectiveCategory = staticCategoryByName.get(itemName) || item.category;
               const itemCategory = normalizeCategory(effectiveCategory);
+
               if(selectedCategory === "all" || selectedCategory === itemCategory){
                 return <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image}/>
               }
-                
             })}
         </div>
       

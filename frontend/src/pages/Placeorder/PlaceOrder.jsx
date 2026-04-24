@@ -13,11 +13,9 @@ const PlaceOrder = () => {
     firstName: "",
     lastName: "",
     email: "",
-    street: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    country: "",
+    buildingWingName: "",
+    buildingFloor: "",
+    roomNo: "",
     phone: ""
   })
 
@@ -48,7 +46,7 @@ const PlaceOrder = () => {
       window.location.replace(session_url);
     }
     else{
-      alert("Error");
+      alert(response.data.message || "Error");
     }
   }
 
@@ -72,14 +70,10 @@ const PlaceOrder = () => {
           <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last name' />
         </div>
         <input required name='email' onChange={onChangeHandler} value={data.email} type="text" placeholder='Email address' />
-        <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
+        <input required name='buildingWingName' onChange={onChangeHandler} value={data.buildingWingName} type="text" placeholder='Building Wing Name' />
         <div className="multi-fields">
-          <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
-          <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='State' />
-        </div>
-        <div className="multi-fields">
-          <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip code'/>
-          <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country'/>
+          <input required name='buildingFloor' onChange={onChangeHandler} value={data.buildingFloor} type="text" placeholder='Building Floor' />
+          <input required name='roomNo' onChange={onChangeHandler} value={data.roomNo} type="text" placeholder='Room No.' />
         </div>
         <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone'/>
       </div>
